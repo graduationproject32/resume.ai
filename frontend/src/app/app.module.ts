@@ -12,6 +12,7 @@ import { AssesmentComponent } from './assesment/assesment.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { ResultsComponent } from './results/results.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ResultsComponent } from './results/results.component';
     AssesmentComponent,
     LoginComponent,
     SignupComponent,
-    ResultsComponent
+    ResultsComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

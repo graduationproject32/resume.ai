@@ -1,0 +1,33 @@
+
+
+.right_sidebar {
+  background-image: url("../../../assets/login-bg.png");
+  text-align: center;
+  h2 {
+    font-size: 48px;
+  }
+  p {
+    font-size: 24px;
+    margin: 35px 0;
+    max-width: 280px;
+    text-align: center;
+    line-height: 1.24;
+  }
+  a {
+    width: 120px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #ffffff;
+    color: #000;
+    border-radius: 25px;
+    font-size: 16px;
+    margin: auto;
+    &:hover {
+      background: #334950;
+      color: #fff;
+      border: 3px solid #fff;
+    }
+  }
+}
