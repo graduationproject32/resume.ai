@@ -1,0 +1,93 @@
+<app-navbar [navType]="navType"></app-navbar>
+<div class="results d-flex flex-column">
+  <section class="d-flex flex-grow-1 align-items-stretch">
+    <div
+      class="container-fluid p-lg-0 d-flex justify-content-center align-items-center"
+    >
+      <div class="profile-card">
+        <div
+          class="card-header d-flex justify-content-between align-items-center"
+        >
+          <div class="chart-description">
+            <h4 class="p-0 m-0">Let's look at your performance</h4>
+            <p class="p-0 m-0">Scores over time</p>
+          </div>
+          <a href="">
+            <span>New Assessment</span>
+            <img src="assets/arrow.svg" alt="" />
+          </a>
+        </div>
+        <div class="chart">
+          <canvas id="scores-time"></canvas>
+        </div>
+        <div class="past-results">
+          <h3>Past results</h3>
+          <div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Score</th>
+                  <th>Position</th>
+                  <th>Career level</th>
+                  <th>Full report</th>
+                  <th>Download Resume</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>12-Dec-2022</td>
+                  <td>80</td>
+                  <td>Software Engineer</td>
+                  <td>Fresh</td>
+                  <td><a href="">Here</a></td>
+                  <td><a href="">Here</a></td>
+                </tr>
+                <tr>
+                  <td>12-Dec-2022</td>
+                  <td>80</td>
+                  <td>Software Engineer</td>
+                  <td>Fresh</td>
+                  <td><a href="">Here</a></td>
+                  <td><a href="">Here</a></td>
+                </tr>
+                <tr>
+                  <td>12-Dec-2022</td>
+                  <td>80</td>
+                  <td>Software Engineer</td>
+                  <td>Fresh</td>
+                  <td><a href="">Here</a></td>
+                  <td><a href="">Here</a></td>
+                </tr>
+                <tr>
+                  <td>12-Dec-2022</td>
+                  <td>80</td>
+                  <td>Software Engineer</td>
+                  <td>Fresh</td>
+                  <td><a href="">Here</a></td>
+                  <td><a href="">Here</a></td>
+                </tr>
+                <tr>
+                  <td>12-Dec-2022</td>
+                  <td>80</td>
+                  <td>Software Engineer</td>
+                  <td>Fresh</td>
+                  <td><a href="">Here</a></td>
+                  <td><a href="">Here</a></td>
+                </tr>
+                <tr>
+                  <td>12-Dec-2022</td>
+                  <td>80</td>
+                  <td>Software Engineer</td>
+                  <td>Fresh</td>
+                  <td><a href="">Here</a></td>
+                  <td><a href="">Here</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
