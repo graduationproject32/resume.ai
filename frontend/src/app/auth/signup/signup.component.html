@@ -1,17 +1,39 @@
 <div class="d-flex flex-column height100">
-  <app-navbar></app-navbar>
+  <app-navbar [navType]="navType"></app-navbar>
 
   <section class="d-flex flex-grow-1 align-items-stretch">
     <div class="container-fluid p-0 d-flex flex-wrap justify-content-center">
-      <div class="col-12 col-lg-8 d-flex justify-content-center align-items-center">
+      <div
+        class="col-12 col-lg-8 d-flex justify-content-center align-items-center"
+      >
         <div class="form-container">
           <h2>Create a free account now</h2>
-          <span>Already Have an account? <a routerLink="/login">login</a>
+          <span
+            >Already Have an account? <a routerLink="/login">login</a>
           </span>
-          <form class="d-flex flex-column align-items-center" [formGroup]="signupForm" (ngSubmit)="onSubmit()" >
-            <input placeholder="your name" type="text" formControlName="userName" id="email" />
-            <input placeholder="Email" type="email" formControlName="email" id="email" />
-            <input placeholder="Password" type="password" formControlName="password" id="pass" />
+          <form
+            class="d-flex flex-column align-items-center"
+            [formGroup]="signupForm"
+            (ngSubmit)="onSubmit()"
+          >
+            <input
+              placeholder="your name"
+              type="text"
+              formControlName="userName"
+              id="email"
+            />
+            <input
+              placeholder="Email"
+              type="email"
+              formControlName="email"
+              id="email"
+            />
+            <input
+              placeholder="Password"
+              type="password"
+              formControlName="password"
+              id="pass"
+            />
             <select class="form-select" aria-label="Default select example">
               <option selected>Career Level</option>
               <option value="1">Fresh</option>
@@ -19,19 +41,31 @@
               <option value="2">Mid-Level</option>
               <option value="3">Senior</option>
             </select>
-            <input placeholder="Last Position" type="text" formControlName="position" id="email" />
+            <input
+              placeholder="Last Position"
+              type="text"
+              formControlName="position"
+              id="email"
+            />
 
-            <input class="btn-hover" type="submit" value="Sign Up" [disabled]="!signupForm.valid"/>
+            <input
+              class="btn-hover"
+              type="submit"
+              value="Sign Up"
+              [disabled]="!signupForm.valid"
+            />
           </form>
         </div>
       </div>
 
-      <div class="col-12 col-lg-4 right_sidebar d-flex justify-content-center align-items-center">
+      <div
+        class="col-12 col-lg-4 right_sidebar signup_right_sidebar d-flex justify-content-center align-items-center"
+      >
         <div class="d-flex flex-column">
           <h2>Reviewing your resume has never been easier</h2>
           <p>
-            With our Ai powered analysis you’ll get helpful insights to
-            enhance your resume
+            With our Ai powered analysis you’ll get helpful insights to enhance
+            your resume
           </p>
         </div>
       </div>

@@ -13,6 +13,9 @@ import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { ResultsComponent } from './results/results.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
+import { CarouselComponent } from './home/carousel/carousel.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     LoginComponent,
     SignupComponent,
     ResultsComponent,
-    NavbarComponent
+    NavbarComponent,
+    CarouselComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,7 +34,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-
+    FontAwesomeModule,
+    NgxUsefulSwiperModule,
   ],
   providers: [
     // Add the interceptor to the providers array.
@@ -46,6 +51,7 @@ import { NavbarComponent } from './navbar/navbar.component';
       useClass: LoggingInterceptorService,
       multi: true,
     },
-  ], bootstrap: [AppComponent]
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
