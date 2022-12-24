@@ -1,0 +1,45 @@
+<div class="login-signup d-flex flex-column height100">
+  <app-navbar [navType]="navType"></app-navbar>
+  <section class="d-flex flex-grow-1 align-items-stretch">
+    <div class="container-fluid p-0 d-flex flex-wrap justify-content-center">
+      <div
+        class="col-12 col-lg-8 d-flex justify-content-center align-items-center"
+      >
+        <div class="form-container">
+          <h2>Login to your account</h2>
+          <span>your resume checker is one step away </span>
+          <form
+            class="d-flex flex-column align-items-center"
+            [formGroup]="loginForm"
+            (ngSubmit)="onSubmit()"
+          >
+            <input
+              placeholder="Email"
+              formControlName="email"
+              type="email"
+              id="email"
+            />
+            <input
+              placeholder="Password"
+              formControlName="password"
+              type="password"
+              id="pass"
+              [disabled]="!loginForm.valid"
+            />
+            <input class="btn-hover" type="submit" value="Login" />
+          </form>
+        </div>
+      </div>
+
+      <div
+        class="col-12 col-lg-4 right_sidebar login_right_sidebar d-flex justify-content-center align-items-center"
+      >
+        <div class="d-flex flex-column">
+          <h2>New Here?</h2>
+          <p>Sign Up now to experience our service</p>
+          <a class="btn-hover" routerLink="/signup">Sign up</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
