@@ -50,7 +50,11 @@ class Signup(Resource):
                     raise ValueError('user_password required')
                 if 'user_level' not in userdata:
                     raise ValueError('user_level required')
-                signupdata = signup_data(userdata['user_email'], userdata['user_password'], userdata['user_level'])
+                if 'user_name' not in userdata:
+                    raise ValueError('user_name required')
+                if 'user_lastposition' not in userdata:
+                    raise ValueError('user_lastposition required')
+                signupdata = signup_data(userdata)
                 signupdata = json.dumps(signupdata, indent=4, default=json_util.default)
                 return response.success({'message': 'User Signup Successfully',
                                          'data': signupdata})
