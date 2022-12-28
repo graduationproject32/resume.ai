@@ -1,0 +1,82 @@
+body,
+html {
+  height: 100%;
+}
+app-root,
+app-upload {
+  height: 100%;
+}
+app-upload {
+  display: flex;
+  flex-direction: column;
+}
+.upload {
+  background-color: #f1f1f1;
+  .container-fluid {
+    flex-basis: 50vw;
+  }
+  .upload-card {
+    width: 100%;
+    padding: 30px 45px;
+    background-color: #fff;
+    border-radius: 25px;
+    h1 {
+      margin-bottom: 30px;
+    }
+    .upload-submit {
+      background: rgba(72, 62, 168, 1);
+      border-radius: 4px;
+      width: 100%;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 45px;
+      margin-top: 30px;
+    }
+    .dropzone {
+      width: 100%;
+      background: #f8f8ff;
+      border: 1px dashed rgba(56, 78, 183, 0.3);
+      border-radius: 4px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      min-height: 300px;
+      transition: all 0.3s ease;
+      img {
+        max-width: 70px;
+      }
+      .browse-btn {
+        color: #483ea8;
+        text-decoration: underline;
+      }
+      .dropzone_content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        .dropzone-text {
+          color: #0f0f0f;
+          font-size: 16px;
+          font-weight: bold;
+          text-align: center;
+          margin-top: 25px;
+          p {
+            color: #676767;
+            font-size: 12px;
+            font-weight: 300;
+            margin: 0;
+            padding-top: 5px;
+          }
+        }
+      }
+    }
+    .upload-table {
+      thead tr {
+        display: none;
+      }
+    }
+  }
+}

@@ -1,0 +1,53 @@
+<app-navbar [navType]="navType"></app-navbar>
+<div class="upload flex-grow-1 d-flex flex-column">
+  <section class="d-flex flex-grow-1 align-items-stretch">
+    <div
+      class="container-fluid p-lg-0 d-flex justify-content-center align-items-center flex-column"
+    >
+      <div class="upload-card">
+        <h1 class="text-center">Upload</h1>
+        <ngx-file-drop
+          dropZoneLabel="Drop files here"
+          (onFileOver)="fileOver($event)"
+          (onFileLeave)="fileLeave($event)"
+          (onFileDrop)="dropped($event)"
+          accept=".pdf"
+          dropZoneClassName="dropzone"
+          contentClassName="dropzone_content"
+          browseBtnClassName="browse-btn"
+        >
+          <ng-template
+            ngx-file-drop-content-tmp
+            let-openFileSelector="openFileSelector"
+          >
+            <img src="../../assets/Upload icon.svg" alt="" />
+            <div class="dropzone-text">
+              Drag and drop your resume here or
+              <a class="browse-btn" type="button" (click)="openFileSelector()">
+                Browse
+              </a>
+              <p>Supported Formats: .PDF</p>
+            </div>
+          </ng-template>
+        </ngx-file-drop>
+        <div class="upload-table">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Uploaded file</th>
+              </tr>
+            </thead>
+            <tbody class="upload-name-style">
+              <tr *ngFor="let item of files; let i = index">
+                <td>
+                  <strong>{{ item.relativePath }}</strong>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <a (click)="upload()" href="" class="upload-submit">Upload</a>
+      </div>
+    </div>
+  </section>
+</div>

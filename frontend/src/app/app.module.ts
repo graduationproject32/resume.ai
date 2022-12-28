@@ -16,6 +16,9 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
 import { CarouselComponent } from './home/carousel/carousel.component';
+//import ngx file drop
+import { NgxFileDropModule } from 'ngx-file-drop';
+import { UploadComponent } from './upload/upload.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +30,7 @@ import { CarouselComponent } from './home/carousel/carousel.component';
     ResultsComponent,
     NavbarComponent,
     CarouselComponent,
+    UploadComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,6 +40,7 @@ import { CarouselComponent } from './home/carousel/carousel.component';
     HttpClientModule,
     FontAwesomeModule,
     NgxUsefulSwiperModule,
+    NgxFileDropModule,
   ],
   providers: [
     // Add the interceptor to the providers array.

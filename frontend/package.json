@@ -24,6 +24,7 @@
     "bootstrap": "^5.2.3",
     "bootstrap-icons": "^1.10.2",
     "chart.js": "^4.1.1",
+    "ngx-file-drop": "^14.0.2",
     "ngx-useful-swiper": "^10.0.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
