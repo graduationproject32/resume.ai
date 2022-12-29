@@ -30,23 +30,27 @@
             </div>
           </ng-template>
         </ngx-file-drop>
-        <div class="upload-table">
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Uploaded file</th>
-              </tr>
-            </thead>
-            <tbody class="upload-name-style">
-              <tr *ngFor="let item of files; let i = index">
-                <td>
-                  <strong>{{ item.relativePath }}</strong>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="upload-table">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Uploaded file</th>
+                </tr>
+              </thead>
+              <tbody class="upload-name-style">
+                <tr *ngFor="let item of files; let i = index">
+                  <td>
+                    <strong>{{ item.relativePath }}</strong>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- <fa-icon *ngIf="loading" [icon]="faSpinner" [spin]="true"></fa-icon>
+          <fa-icon *ngIf="success" [icon]="faSpinner" [spin]="true"></fa-icon> -->
         </div>
-        <a (click)="upload()" href="" class="upload-submit">Upload</a>
+        <button (click)="upload()" class="upload-submit">Upload</button>
       </div>
     </div>
   </section>

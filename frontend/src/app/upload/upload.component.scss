@@ -25,6 +25,7 @@ app-upload {
     }
     .upload-submit {
       background: rgba(72, 62, 168, 1);
+      border: 0;
       border-radius: 4px;
       width: 100%;
       color: #fff;
@@ -74,9 +75,24 @@ app-upload {
       }
     }
     .upload-table {
+      table {
+        margin: 0;
+        td {
+          border: 0;
+        }
+      }
       thead tr {
         display: none;
       }
     }
+  }
+  .dropzone-hover {
+    background: #fff !important;
+    border-width: 3px !important;
+  }
+  fa-icon {
+    font-size: 25px;
+    color: #483ea8;
+    padding-top: 20px;
   }
 }

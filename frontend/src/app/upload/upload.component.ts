@@ -1,11 +1,13 @@
 import { HttpClient, HttpHeaders, HttpEventType } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
+import { Observable } from 'rxjs';
 import {
   NgxFileDropEntry,
   FileSystemFileEntry,
   FileSystemDirectoryEntry,
 } from 'ngx-file-drop';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-upload',
@@ -17,9 +19,25 @@ export class UploadComponent {
   constructor(private http: HttpClient) {}
   public navType = 'darkNav';
   public files: NgxFileDropEntry[] = [];
+  faSpinner = faSpinner;
 
   public dropped(files: NgxFileDropEntry[]) {
     this.files = files;
+    const dropZone = <HTMLElement>document.querySelector('.dropzone');
+    dropZone.classList.remove('dropzone-hover');
+  }
+
+  public fileOver(event: any) {
+    const dropZone = <HTMLElement>document.querySelector('.dropzone');
+    dropZone.classList.add('dropzone-hover');
+  }
+
+  public fileLeave(event: any) {
+    const dropZone = <HTMLElement>document.querySelector('.dropzone');
+    dropZone.classList.remove('dropzone-hover');
+  }
+  public upload() {
+    const files = this.files;
     for (const droppedFile of files) {
       // Is it a file?
       if (droppedFile.fileEntry.isFile) {
@@ -34,7 +52,8 @@ export class UploadComponent {
 
           // Headers
           const headers = new HttpHeaders({});
-
+          headers.append('Access-Control-Allow-Origin', '*');
+          headers.append('Access-Control-Allow-Credentials', 'true');
           this.http
             .post(
               'http://127.0.0.1:5000/resumeanalysis/UploadResume',
@@ -46,8 +65,8 @@ export class UploadComponent {
                 observe: 'events',
               }
             )
-            .subscribe((data) => {
-              console.log(data);
+            .subscribe((event) => {
+              console.log(event);
             });
         });
       } else {
@@ -56,17 +75,6 @@ export class UploadComponent {
         console.log(droppedFile.relativePath, fileEntry);
       }
     }
-  }
-
-  public fileOver(event: any) {
-    console.log(event);
-  }
-
-  public fileLeave(event: any) {
-    console.log(event);
-  }
-  public upload() {
-    const files = this.files;
     console.log('test');
   }
 }
