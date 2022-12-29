@@ -24,7 +24,7 @@ app-upload {
       margin-bottom: 30px;
     }
     .upload-submit {
-      background: rgba(72, 62, 168, 1);
+      background: rgba(72, 62, 168, 0.5);
       border: 0;
       border-radius: 4px;
       width: 100%;
@@ -34,6 +34,10 @@ app-upload {
       align-items: center;
       height: 45px;
       margin-top: 30px;
+      transition: 300ms all ease-in-out;
+      &.dragged {
+        background: rgba(72, 62, 168, 1);
+      }
     }
     .dropzone {
       width: 100%;
@@ -92,7 +96,15 @@ app-upload {
   }
   fa-icon {
     font-size: 25px;
-    color: #483ea8;
     padding-top: 20px;
+    &.spinner {
+      color: #483ea8;
+    }
+    &.success {
+      color: #00c853;
+    }
+    &.error {
+      color: #d50000;
+    }
   }
 }

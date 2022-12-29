@@ -47,8 +47,22 @@
               </tbody>
             </table>
           </div>
-          <!-- <fa-icon *ngIf="loading" [icon]="faSpinner" [spin]="true"></fa-icon>
-          <fa-icon *ngIf="success" [icon]="faSpinner" [spin]="true"></fa-icon> -->
+          <fa-icon
+            class="spinner"
+            *ngIf="loading"
+            [icon]="faSpinner"
+            [spin]="true"
+          ></fa-icon>
+          <fa-icon
+            class="success"
+            *ngIf="success"
+            [icon]="faCircleCheck"
+          ></fa-icon>
+          <fa-icon
+            class="error"
+            *ngIf="error"
+            [icon]="faExclamationTriangle"
+          ></fa-icon>
         </div>
         <button (click)="upload()" class="upload-submit">Upload</button>
       </div>

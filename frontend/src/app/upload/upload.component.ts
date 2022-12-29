@@ -1,4 +1,9 @@
-import { HttpClient, HttpHeaders, HttpEventType } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpHeaders,
+  HttpEventType,
+  HttpHeaderResponse,
+} from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -8,6 +13,8 @@ import {
   FileSystemDirectoryEntry,
 } from 'ngx-file-drop';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-upload',
@@ -19,12 +26,18 @@ export class UploadComponent {
   constructor(private http: HttpClient) {}
   public navType = 'darkNav';
   public files: NgxFileDropEntry[] = [];
+  loading = false;
+  success = false;
+  error = false;
   faSpinner = faSpinner;
-
+  faCircleCheck = faCircleCheck;
+  faExclamationTriangle = faExclamationTriangle;
   public dropped(files: NgxFileDropEntry[]) {
     this.files = files;
     const dropZone = <HTMLElement>document.querySelector('.dropzone');
     dropZone.classList.remove('dropzone-hover');
+    const uploadBtn = <HTMLElement>document.querySelector('.upload-submit');
+    uploadBtn.classList.add('dragged');
   }
 
   public fileOver(event: any) {
@@ -37,20 +50,20 @@ export class UploadComponent {
     dropZone.classList.remove('dropzone-hover');
   }
   public upload() {
+    if (this.files.length === 0) {
+      console.log('No files selected');
+      return;
+    }
+    this.loading = true;
     const files = this.files;
     for (const droppedFile of files) {
       // Is it a file?
       if (droppedFile.fileEntry.isFile) {
         const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
         fileEntry.file((file: File) => {
-          // Here you can access the real file
           console.log(droppedFile.relativePath, file);
-
-          // You could upload it like this:
           const formData = new FormData();
           formData.append('file', file, droppedFile.relativePath);
-
-          // Headers
           const headers = new HttpHeaders({});
           headers.append('Access-Control-Allow-Origin', '*');
           headers.append('Access-Control-Allow-Credentials', 'true');
@@ -60,13 +73,18 @@ export class UploadComponent {
               formData,
               {
                 headers: headers,
-                responseType: 'blob',
-                reportProgress: true,
-                observe: 'events',
+                observe: 'response',
               }
             )
-            .subscribe((event) => {
-              console.log(event);
+            .subscribe((event: any) => {
+              if (event.status === 200) {
+                console.log(event.status);
+                this.loading = false;
+                this.success = true;
+              } else {
+                this.loading = false;
+                this.error = true;
+              }
             });
         });
       } else {
@@ -75,6 +93,5 @@ export class UploadComponent {
         console.log(droppedFile.relativePath, fileEntry);
       }
     }
-    console.log('test');
   }
 }
