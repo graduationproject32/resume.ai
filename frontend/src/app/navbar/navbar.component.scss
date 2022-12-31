@@ -1,9 +1,4 @@
 nav {
-  //this class should be removed from the html when user is logged in
-  // for now I'll keep it in the component.html
-  .loggedOut {
-    display: none;
-  }
   .nav-link {
     padding: 0;
   }

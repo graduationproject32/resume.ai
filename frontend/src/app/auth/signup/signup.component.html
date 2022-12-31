@@ -20,7 +20,7 @@
               placeholder="your name"
               type="text"
               formControlName="userName"
-              id="email"
+              id="name"
             />
             <input
               placeholder="Email"
@@ -34,18 +34,23 @@
               formControlName="password"
               id="pass"
             />
-            <select class="form-select" aria-label="Default select example">
-              <option selected>Career Level</option>
-              <option value="1">Fresh</option>
-              <option value="2">Junior</option>
-              <option value="2">Mid-Level</option>
-              <option value="3">Senior</option>
+            <select
+              formControlName="careerLevel"
+              class="form-select"
+              aria-label="Default select example"
+              [(ngModel)]="default"
+            >
+              <option value="CareerLevel" disabled>Career Level</option>
+              <option value="fresh">Fresh</option>
+              <option value="junior">Junior</option>
+              <option value="midlevel">Mid-Level</option>
+              <option value="senior">Senior</option>
             </select>
             <input
               placeholder="Last Position"
               type="text"
               formControlName="position"
-              id="email"
+              id="position"
             />
 
             <input
@@ -54,7 +59,16 @@
               value="Sign Up"
               [disabled]="!signupForm.valid"
             />
+            <fa-icon
+              *ngIf="isLoading"
+              class="spinner"
+              [icon]="faSpinner"
+              [spin]="true"
+            ></fa-icon>
           </form>
+          <p *ngIf="invalid" class="response-fail">
+            This Email is already in use.
+          </p>
         </div>
       </div>
 

@@ -2,6 +2,7 @@ export class User {
   constructor(
     public email: string,
     private _token: string,
+    //create Date object
     private _tokenExpirationDate: Date
   ) {}
 

@@ -1,4 +1,6 @@
 import { HttpClient } from '@angular/common/http';
+//import http header
+import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, catchError, lastValueFrom, tap } from 'rxjs';
@@ -8,18 +10,34 @@ import { User } from './user.model';
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private httpClient: HttpClient, private router: Router) { }
+  constructor(private httpClient: HttpClient, private router: Router) {}
 
   // we will use behavior subject because we want to emit the current user
   // user = new Subject<User>();
   user = new BehaviorSubject<User | null>(null);
   tokenExpiredTimer: any;
-  signup(email: string, password: string) {
+  signup(
+    email: string,
+    password: string,
+    user_level: string,
+    user_name: string,
+    user_position: string
+  ) {
+    const headers = new HttpHeaders({});
+    headers.append('Access-Control-Allow-Origin', '*');
+    headers.append('Access-Control-Allow-Credentials', 'true');
     const res = this.httpClient
-      .post<{ msg: string }>('http://localhost:3000/signup', {
-        email: email,
-        password: password,
-      })
+      .post<{ code: number; msg: string }>(
+        'http://127.0.0.1:5000/resumeanalysis/signup',
+        {
+          user_email: email,
+          user_password: password,
+          user_level: user_level,
+          user_name: user_name,
+          user_lastposition: user_position,
+        },
+        { headers: headers, observe: 'response' }
+      )
       .pipe(
         // we can use catchError here modify the error message and throw it
         catchError((err) => {
@@ -30,17 +48,22 @@ export class AuthService {
             err.error.msg = 'Email already exists';
           }
           throw err;
+        }),
+        tap((resData) => {
+          if (resData.body?.code == 200) {
+            this.router.navigate(['/login']);
+          }
         })
       );
     return lastValueFrom(res);
   }
   login(email: string, password: string) {
     const res = this.httpClient
-      .post<{ token: string; expiryDate: number }>(
-        'http://localhost:3000/login',
+      .post<{ code: number; expiryDate: number; data: any }>(
+        'http://127.0.0.1:5000/resumeanalysis/login',
         {
-          email: email,
-          password: password,
+          user_email: email,
+          user_password: password,
         }
       )
       .pipe(
@@ -48,8 +71,15 @@ export class AuthService {
           throw err;
         }),
         tap((resData) => {
-          const expiryDate = new Date(+resData.expiryDate);
-          this.authHandler(email, resData.token, expiryDate);
+          console.log(resData.code);
+          const expiryDate = new Date(
+            new Date().getTime() + 2 * 365 * 24 * 60 * 60 * 1000
+          );
+          if (resData.code === 200) {
+            console.log(resData.data);
+            this.authHandler(email, 'token', expiryDate);
+            this.router.navigate(['upload']);
+          }
         })
       );
     return lastValueFrom(res);
@@ -76,7 +106,7 @@ export class AuthService {
     const loadedUser = new User(userData.email, userData._token, expiryDate);
     if (loadedUser.token) {
       this.user.next(loadedUser);
-      this.autoLogout(expiryDate);
+      // this.autoLogout(expiryDate);
     }
   }
   autoLogout(expiryDate: Date) {
@@ -88,7 +118,8 @@ export class AuthService {
   authHandler(email: string, token: string, expiryDate: Date) {
     const user = new User(email, token, expiryDate);
     this.user.next(user);
-    this.autoLogout(expiryDate);
+    // this.autoLogout(expiryDate);
     localStorage.setItem('userData', JSON.stringify(user));
+    console.log(localStorage.getItem('userData'));
   }
 }

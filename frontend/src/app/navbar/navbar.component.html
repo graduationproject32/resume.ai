@@ -4,7 +4,8 @@
       <img class="logo_light" src="assets/logo-white.svg" alt="" />
       <img class="logo_dark" src="assets/logo-black.svg" alt="" />
     </a>
-    <ul class="loggedOut navbar-nav m-0">
+    <a *ngIf="!isLoggedIn" href="login">Sign in</a>
+    <ul *ngIf="isLoggedIn" class="navbar-nav m-0">
       <li class="nav-item dropdown">
         <a
           class="nav-link dropdown-toggle d-flex align-items-center"
@@ -14,16 +15,15 @@
           data-bs-toggle="dropdown"
           aria-expanded="false"
         >
-          <div class="avatar">
-            <img src="assets/arsany_avatar.jpg" alt="" />
-          </div>
           <div class="user-info">
-            <h4 class="user-name">Arsany Milad</h4>
-            <p class="occupation">Junior Software Engineer</p>
+            <h4 class="user-name">{{ userName }}</h4>
+            <p class="occupation">{{ jobTitle }}</p>
           </div>
         </a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <li><a class="dropdown-item" href="#">Log out</a></li>
+          <li>
+            <a (click)="onLogout()" class="dropdown-item" href="">Log out</a>
+          </li>
         </ul>
       </li>
     </ul>

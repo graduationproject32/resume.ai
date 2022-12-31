@@ -12,6 +12,7 @@ SwiperCore.use([Navigation, Pagination]);
 export class CarouselComponent {
   //swiper config
   config: SwiperOptions = {
+    autoplay: true,
     loop: true,
     slidesPerView: 1,
     centeredSlides: true,

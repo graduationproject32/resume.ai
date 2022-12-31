@@ -27,6 +27,15 @@
               [disabled]="!loginForm.valid"
             />
             <input class="btn-hover" type="submit" value="Login" />
+            <fa-icon
+              class="spinner"
+              *ngIf="loading"
+              [icon]="faSpinner"
+              [spin]="true"
+            ></fa-icon>
+            <p *ngIf="invalid" class="response-fail">
+              Wrong Credentials, please try again
+            </p>
           </form>
         </div>
       </div>
