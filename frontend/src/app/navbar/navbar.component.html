@@ -1,15 +1,14 @@
 <nav [ngClass]="navType" class="navbar navbar-expand-lg">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" routerLink="/home">
       <img class="logo_light" src="assets/logo-white.svg" alt="" />
       <img class="logo_dark" src="assets/logo-black.svg" alt="" />
     </a>
-    <a *ngIf="!isLoggedIn" href="login">Sign in</a>
+    <a *ngIf="!isLoggedIn" routerLink="/login">Sign in</a>
     <ul *ngIf="isLoggedIn" class="navbar-nav m-0">
       <li class="nav-item dropdown">
         <a
           class="nav-link dropdown-toggle d-flex align-items-center"
-          href="home"
           id="navbarDropdown"
           role="button"
           data-bs-toggle="dropdown"
